@@ -5,11 +5,11 @@ copyright 2015, Keun Hoi Kim
 
 
 export class DynamicTable {
-    constructor(container, data, header) {
+    constructor(data, header, container) {
         this.table = document.createElement('table');
         this.table.classList.add('dynamic-table');
         if (Array.isArray(data)) this.tabulate(data, header);
-        container.appendChild(this.table);
+        if (container instanceof HTMLElement) container.appendChild(this.table);
     }
 
     tabulate(data, header = true, append = false) {
@@ -89,69 +89,4 @@ export class DynamicTable {
     append(data, header = true) {
         this.tabulate(data, header, true)
     }
-}
-
-const test = () => {
-    let table1 = new DynamicTable(document.body,
-        [
-            {name: "Locke", number: 4},
-            {name: "Reyes", number: 8},
-            {name: "Ford", number: 15},
-            {name: "Jarrah", number: 16},
-            {name: "Shephard", number: 23},
-            {name: "Kwon", number: 42}
-        ], ['name', 'number']
-    );
-
-    let table2 = new DynamicTable(document.body,
-        [
-            [11975, 5871, 8916, 2868],
-            [1951, 10048, 2060, 6171],
-            [8010, 16145, 8090, 8045],
-            [1013, 990, 940, 6907]
-        ], true
-    );
-
-    let table3 = new DynamicTable(document.body,
-        [
-            [11975, 5871, 8916, 2868],
-            [1951, 10048, 2060, 6171],
-            [8010, 16145, 8090, 8045],
-            [1013, 990, 940, 6907]
-        ], ['num1', 'num2', 'num3', 'num4']
-    );
-
-    try {
-        let table4 = new DynamicTable(document.body,
-            [
-                {name: "Locke", number: 4},
-                {name: "Reyes", number: 8},
-                {name: "Ford", number: 15},
-                {name: "Jarrah", number: 16},
-                {name: "Shephard", number: 23},
-                {name: "Kwon", number: 42}
-            ], true
-        );
-    } catch (e) {
-        // should throw here.
-        console.warn(e);
-    }
-
-    table1.append([
-        [11975, 5871, 8916, 2868],
-        [1951, 10048, 2060, 6171],
-        [8010, 16145, 8090, 8045],
-        [1013, 990, 940, 6907]
-    ]);
-
-    table2.append([
-            {name: "Locke", number: 4},
-            {name: "Reyes", number: 8},
-            {name: "Ford", number: 15},
-            {name: "Jarrah", number: 16},
-            {name: "Shephard", number: 23},
-            {name: "Kwon", number: 42}
-        ], ['name', 'number']);
-
-    console.log("CLEAR.");
 }
