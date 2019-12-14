@@ -1,13 +1,13 @@
-# dynamicTable.js
+# DynamicTable.js
 A lightweight js library that generates HTML tables with given data.
 No dependencies. Can be used as an ES6 library, or simply copy-pasted.
 An alternative to large data visualization libraries (e.g. D3.js) if all you want to do is just make a DOM table.
 
 ## API Reference
 
-<a href="#DynamicTable" name="DynamicTable">#</a> <b>DynamicTable</b>(<i>container</i>, <i>data</i>, <i>header</i>) [<>]
+<a href="#DynamicTable" name="DynamicTable">#</a> <b>DynamicTable</b>(<i>data</i>, <i>header</i>, <i>container</i>) [<>]
 
-Creates an HTML Table element, populate the table with the data and header, and append it to the container element.
+Creates an HTML Table element, populates the table with the data and header, and appends it to *container* if *container* is an HTML element.
 The data can be either in a form of a 2D matrix (an array of arrays),
 ```js
   [
@@ -53,7 +53,7 @@ This is the HTML Table element. Used it to move the table, delete the table, and
 
 ### Examples
 ```js
-let table1 = new DynamicTable(document.body,
+let table1 = new DynamicTable(
         [
             {name: "Locke", number: 4},
             {name: "Reyes", number: 8},
@@ -61,29 +61,35 @@ let table1 = new DynamicTable(document.body,
             {name: "Jarrah", number: 16},
             {name: "Shephard", number: 23},
             {name: "Kwon", number: 42}
-        ], ['name', 'number']
+        ],
+        ['name', 'number'],
+        document.body
     );
 
-    let table2 = new DynamicTable(document.body,
+    let table2 = new DynamicTable(
         [
             [11975, 5871, 8916, 2868],
             [1951, 10048, 2060, 6171],
             [8010, 16145, 8090, 8045],
             [1013, 990, 940, 6907]
-        ], true
+        ],
+        true,
+        document.body
     );
 
-    let table3 = new DynamicTable(document.body,
+    let table3 = new DynamicTable(
         [
             [11975, 5871, 8916, 2868],
             [1951, 10048, 2060, 6171],
             [8010, 16145, 8090, 8045],
             [1013, 990, 940, 6907]
-        ], ['num1', 'num2', 'num3', 'num4']
+        ],
+        ['num1', 'num2', 'num3', 'num4'],
+        document.body,
     );
 
     try {
-        let table4 = new DynamicTable(document.body,
+        let table4 = new DynamicTable(
             [
                 {name: "Locke", number: 4},
                 {name: "Reyes", number: 8},
@@ -91,10 +97,11 @@ let table1 = new DynamicTable(document.body,
                 {name: "Jarrah", number: 16},
                 {name: "Shephard", number: 23},
                 {name: "Kwon", number: 42}
-            ], true
+            ], true,
+            document.body,
         );
     } catch (e) {
-        // This throws an error due to not having an array of header items.
+        // should throw here.
         console.warn(e);
     }
 
@@ -106,11 +113,11 @@ let table1 = new DynamicTable(document.body,
     ]);
 
     table2.append([
-            {name: "Locke", number: 4},
-            {name: "Reyes", number: 8},
-            {name: "Ford", number: 15},
-            {name: "Jarrah", number: 16},
-            {name: "Shephard", number: 23},
-            {name: "Kwon", number: 42}
-        ], ['name', 'number']);
+        {name: "Locke", number: 4},
+        {name: "Reyes", number: 8},
+        {name: "Ford", number: 15},
+        {name: "Jarrah", number: 16},
+        {name: "Shephard", number: 23},
+        {name: "Kwon", number: 42}
+    ], ['name', 'number']);
 ```
