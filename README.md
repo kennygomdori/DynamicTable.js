@@ -54,6 +54,42 @@ This is the HTML Table element. Used it to move the table, delete the table, and
 ### Examples
 ```js
 let table1 = new DynamicTable(
+    [
+        {name: "Locke", number: 4},
+        {name: "Reyes", number: 8},
+        {name: "Ford", number: 15},
+        {name: "Jarrah", number: 16},
+        {name: "Shephard", number: 23},
+        {name: "Kwon", number: 42}
+    ],
+    ['name', 'number'],
+    document.body
+);
+
+let table2 = new DynamicTable(
+    [
+        [11975, 5871, 8916, 2868],
+        [1951, 10048, 2060, 6171],
+        [8010, 16145, 8090, 8045],
+        [1013, 990, 940, 6907]
+    ],
+    true,
+    document.body
+);
+
+let table3 = new DynamicTable(
+    [
+        [11975, 5871, 8916, 2868],
+        [1951, 10048, 2060, 6171],
+        [8010, 16145, 8090, 8045],
+        [1013, 990, 940, 6907]
+    ],
+    ['num1', 'num2', 'num3', 'num4'],
+    document.body,
+);
+
+try {
+    let table4 = new DynamicTable(
         [
             {name: "Locke", number: 4},
             {name: "Reyes", number: 8},
@@ -61,63 +97,27 @@ let table1 = new DynamicTable(
             {name: "Jarrah", number: 16},
             {name: "Shephard", number: 23},
             {name: "Kwon", number: 42}
-        ],
-        ['name', 'number'],
-        document.body
-    );
-
-    let table2 = new DynamicTable(
-        [
-            [11975, 5871, 8916, 2868],
-            [1951, 10048, 2060, 6171],
-            [8010, 16145, 8090, 8045],
-            [1013, 990, 940, 6907]
-        ],
-        true,
-        document.body
-    );
-
-    let table3 = new DynamicTable(
-        [
-            [11975, 5871, 8916, 2868],
-            [1951, 10048, 2060, 6171],
-            [8010, 16145, 8090, 8045],
-            [1013, 990, 940, 6907]
-        ],
-        ['num1', 'num2', 'num3', 'num4'],
+        ], true,
         document.body,
     );
+} catch (e) {
+    // should throw here.
+    console.warn(e);
+}
 
-    try {
-        let table4 = new DynamicTable(
-            [
-                {name: "Locke", number: 4},
-                {name: "Reyes", number: 8},
-                {name: "Ford", number: 15},
-                {name: "Jarrah", number: 16},
-                {name: "Shephard", number: 23},
-                {name: "Kwon", number: 42}
-            ], true,
-            document.body,
-        );
-    } catch (e) {
-        // should throw here.
-        console.warn(e);
-    }
+table1.append([
+    [11975, 5871, 8916, 2868],
+    [1951, 10048, 2060, 6171],
+    [8010, 16145, 8090, 8045],
+    [1013, 990, 940, 6907]
+]);
 
-    table1.append([
-        [11975, 5871, 8916, 2868],
-        [1951, 10048, 2060, 6171],
-        [8010, 16145, 8090, 8045],
-        [1013, 990, 940, 6907]
-    ]);
-
-    table2.append([
-        {name: "Locke", number: 4},
-        {name: "Reyes", number: 8},
-        {name: "Ford", number: 15},
-        {name: "Jarrah", number: 16},
-        {name: "Shephard", number: 23},
-        {name: "Kwon", number: 42}
-    ], ['name', 'number']);
+table2.append([
+    {name: "Locke", number: 4},
+    {name: "Reyes", number: 8},
+    {name: "Ford", number: 15},
+    {name: "Jarrah", number: 16},
+    {name: "Shephard", number: 23},
+    {name: "Kwon", number: 42}
+], ['name', 'number']);
 ```
